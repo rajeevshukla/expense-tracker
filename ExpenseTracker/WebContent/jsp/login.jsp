@@ -18,6 +18,24 @@
 
 <script type="text/javascript">
  //write here java script coding.
+ 
+function validateForm () {
+	var p1 = document.getElementById('p1');
+	var p2 = document.getElementById('p2');
+	if (p1.value != p2.value) {
+		alert('Password check!');
+		return false;
+	}
+
+// check email
+var email = document.getElementById('email');
+// regex
+var email_regexp = /[0-9a-z_A-Z]+@[0-9a-z_A-Z.]+\.[a-zА-ЯA-Z]{2,4}/i;
+if (!email_regexp.test(email.value)) {
+alert('Check email');
+return false;
+}
+}
 
 </script>
 
@@ -36,11 +54,11 @@
             <div class="account-wall">
                 <div id="my-tab-content" class="tab-content">
 						<div class="tab-pane active" id="login">
-               		    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+               		    <img class="profile-img" src=""
                     alt="">
-               			<form class="form-signin" action="" method="">
-               				<input type="text" class="form-control" placeholder="Username" required autofocus>
-               				<input type="password" class="form-control" placeholder="Password" required>
+               			<form class="form-signin" action="home" method="post">
+               				<input type="text" name="user" class="form-control" placeholder="Username" required autofocus>
+               				<input type="password" name="password" class="form-control" placeholder="Password" required>
                				<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
                			</form>
                			<div id="tabs" data-tabs="tabs">
@@ -48,11 +66,13 @@
               				</div>
 						</div>
 						<div class="tab-pane" id="register">
-							<form class="form-signin" action="" method="">
-								<input type="text" class="form-control" placeholder="User Name ..." required autofocus>
-								<input type="email" class="form-control" placeholder="Emaill Address ..." required>
-								<input type="password" class="form-control" placeholder="Password ..." required>
-								<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign Up" />
+							<form class="form-signin" action="registered" method="post">
+								<input type="text" name="user" class="form-control" placeholder="User Name ..." required autofocus>
+								<input type="email" name="email" class="form-control" placeholder="Emaill Address ..." required>
+								<input type="password" id="p1" name="password" class="form-control" placeholder="Password ..." required>
+								<input type="password" id="p2" name="repassword" class="form-control" placeholder="Confirm Password ..." required>
+								<input type="number" name="mobno" class="form-control" placeholder="Mobile Number ..." maxlength="10" required>
+								<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign Up" onclick="return validateForm();" />
 							</form>
 							<div id="tabs" data-tabs="tabs">
                			<p class="text-center"><a href="#login" data-toggle="tab">Have an Account?</a></p>
